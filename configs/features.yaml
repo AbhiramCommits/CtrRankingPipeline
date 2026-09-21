@@ -1,0 +1,31 @@
+# Spark configuration shared by the feature engineering job.
+spark:
+  app_name: ctr-features
+  master: "local[*]"
+  driver_memory: "2g"
+  properties:
+    spark.sql.shuffle.partitions: "8"
+    spark.ui.enabled: "false"
+    spark.sql.session.timeZone: "UTC"
+    spark.sql.debug.maxToStringFields: "64"
+    # Store timestamps as epoch micros; the legacy INT96 format is written in
+    # the JVM's default timezone and corrupts wall-clock times when it
+    # differs from the session timezone.
+    spark.sql.parquet.outputTimestampType: "TIMESTAMP_MICROS"
+
+# Feature engineering parameters (scripts/run_features.py).
+features:
+  input_root: "data/parquet"
+  output_root: "data/features"
+  artifacts_dir: "artifacts"
+  # Categorical vocabulary: keep values seen >= min_count times in TRAIN.
+  min_count: 10
+  # Numeric clipping quantile, fitted on the TRAIN split only.
+  clip_quantile: 0.99
+  pit:
+    # Keys treated as advertiser / campaign / placement / user-segment ids.
+    key_columns: ["C1", "C6", "C9", "C14"]
+    # Trailing history window in seconds (ends strictly before each row).
+    window_seconds: 86400
+    # Bayesian smoothing strength: (clicks + alpha*prior)/(impressions + alpha).
+    alpha: 50

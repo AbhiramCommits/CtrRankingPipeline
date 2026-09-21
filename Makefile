@@ -23,7 +23,7 @@ data: $(PYTHON)
 	$(PYTHON) scripts/run_ingest.py --config configs/spark.yaml
 
 features: $(PYTHON)
-	$(PYTHON) scripts/run_features.py
+	$(PYTHON) scripts/run_features.py --config configs/features.yaml
 
 train: $(PYTHON)
 	$(PYTHON) scripts/run_train.py

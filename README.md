@@ -10,7 +10,7 @@ data → features → models → retrieval → evaluation → serving
 ## Status
 
 - [x] Step 1 — repo skeleton, dataset download/generation, Spark ingestion with time-based splits
-- [ ] Step 2 — feature engineering (`ctr/features`)
+- [x] Step 2 — feature engineering (`ctr/features`): train-fit transforms (log1p + clip + median impute, OOV vocabularies) and point-in-time rolling aggregates
 - [ ] Step 3 — model training (`ctr/models`)
 - [ ] Step 4 — retrieval (`ctr/retrieval`)
 - [ ] Step 5 — evaluation (`ctr/eval`)
@@ -21,7 +21,7 @@ data → features → models → retrieval → evaluation → serving
 ```
 ctr/            main package
   data/         dataset generation + Spark ingestion
-  features/     feature engineering (TODO)
+  features/     train-fit transforms (log1p/clip/impute, OOV vocabularies) + point-in-time aggregates
   models/       CTR models (TODO)
   retrieval/    ad retrieval / candidate ranking (TODO)
   eval/         offline metrics (TODO)
@@ -37,6 +37,7 @@ notebooks/      exploration notebooks
 ```bash
 make install   # uv (or venv + pip) editable install
 make data      # produce data/parquet/{train,validation,test} from data/raw/train.txt
+make features  # produce data/features/{split} + fitted artifacts (train-fit, leakage-free)
 make test      # pytest with coverage
 make lint      # ruff (falls back to a syntax check)
 ```

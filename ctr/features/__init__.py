@@ -1,1 +1,1 @@
-"""Feature engineering for CTR models (TODO in a later step)."""
+"""Feature engineering: leakage-free transforms and point-in-time aggregates."""

@@ -1,8 +1,15 @@
 """Shared pytest fixtures."""
 
+import os
 import shutil
+import sys
 
 import pytest
+
+# DataFrames created from Python rows are materialized in PySpark worker
+# processes; pin the workers to the same interpreter as the driver so tests
+# never pick up an incompatible `python3` from PATH.
+os.environ.setdefault("PYSPARK_PYTHON", sys.executable)
 
 
 @pytest.fixture(scope="session")
