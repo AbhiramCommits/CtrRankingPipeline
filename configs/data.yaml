@@ -1,0 +1,13 @@
+# Dataset download / generation parameters (scripts/download_data.py).
+dataset:
+  rows: 1000000
+  seed: 42
+  target_positive_rate: 0.035
+  chunk_size: 50000
+  days: 21
+  # URL of the public Criteo sample archive (dac_sample.tar.gz). When null --
+  # or whenever the download fails -- a deterministic synthetic dataset with
+  # the same schema is generated instead, so `data/raw/train.txt` is always
+  # produced and the pipeline runs offline.
+  url: null
+  output_path: "data/raw/train.txt"

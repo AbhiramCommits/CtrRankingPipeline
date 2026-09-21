@@ -1,0 +1,28 @@
+# Spark configuration for the ingestion job (scripts/run_ingest.py).
+spark:
+  app_name: ctr-ingest
+  master: "local[*]"
+  driver_memory: "2g"
+  properties:
+    spark.sql.shuffle.partitions: "8"
+    spark.ui.enabled: "false"
+    spark.sql.session.timeZone: "UTC"
+    spark.sql.debug.maxToStringFields: "64"
+    # Store timestamps as epoch micros; the legacy INT96 format is written in
+    # the JVM's default timezone and corrupts wall-clock times when it
+    # differs from the session timezone.
+    spark.sql.parquet.outputTimestampType: "TIMESTAMP_MICROS"
+
+# Ingestion parameters. Relative paths are resolved against the directory the
+# pipeline is launched from (the repository root).
+ingest:
+  raw_path: "data/raw/train.txt"
+  parquet_root: "data/parquet"
+  # Start of the synthetic event window. event_ts is spread over `days` days:
+  # first train_days days -> train, next validation_days -> validation,
+  # last test_days -> test.
+  base_ts: "2026-09-01 00:00:00"
+  days: 21
+  train_days: 17
+  validation_days: 2
+  test_days: 2
