@@ -18,7 +18,19 @@ htmlcov/
 
 # Pipeline artifacts (reproducible via `make data`)
 /data/
-/artifacts/
+/artifacts/*
+# ... except the headline result files, committed so README numbers are
+# traceable to real generated outputs.
+!/artifacts/retrieval/
+!/artifacts/eval/
+!/artifacts/bench/
+/artifacts/retrieval/*
+/artifacts/eval/*
+/artifacts/bench/*
+!/artifacts/retrieval/benchmark.json
+!/artifacts/eval/report.json
+!/artifacts/bench/results.json
+!/artifacts/bench/results.md
 
 # Spark
 spark-warehouse/

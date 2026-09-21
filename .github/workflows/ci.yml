@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -e ".[dev]"
+      - run: ruff check ctr scripts tests
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - run: pip install -q -e ".[dev]"
+      - run: pytest --cov=ctr --cov-report=term-missing
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ctr-ranking-serving .
+
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - run: pip install -q -e ".[dev]"
+
+      - name: Ingest tiny synthetic dataset
+        run: make data ROWS=30000
+
+      - name: Build features
+        run: make features
+
+      - name: Train retrieval + ranker (1 epoch)
+        env:
+          CTR_RETRIEVAL_EPOCHS: "1"
+          CTR_RANKER_EPOCHS: "1"
+        run: make train
+
+      - name: Evaluate
+        run: make eval
+
+      - name: Start serving and hit /rank
+        run: |
+          uvicorn ctr.serving.app:app --host 127.0.0.1 --port 8000 &
+          SERVER_PID=$!
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:8000/healthz > /dev/null; then break; fi
+            sleep 1
+          done
+          curl -sf http://127.0.0.1:8000/healthz
+          python - <<'EOF'
+          import httpx, random
+
+          context = {f: f"{random.getrandbits(32):08x}" for f in (
+              "C2", "C3", "C4", "C5", "C7", "C8", "C10", "C11", "C12", "C13",
+              "C14", "C15", "C16", "C17", "C18", "C19", "C20", "C21", "C22",
+              "C23", "C24", "C25", "C26",
+          )}
+          payload = {
+              "context_categorical": context,
+              "numeric_features": [1.0] * 21,
+          }
+          response = httpx.post(
+              "http://127.0.0.1:8000/rank", json=payload, timeout=60.0
+          )
+          response.raise_for_status()
+          data = response.json()
+          assert "ads" in data and "degraded" in data
+          assert len(data["ads"]) > 0
+          metrics = httpx.get("http://127.0.0.1:8000/metrics", timeout=10.0).json()
+          assert metrics["request_count"] >= 1
+          print("SMOKE OK: ranked", len(data["ads"]), "ads; degraded =", data["degraded"])
+          EOF
+          kill $SERVER_PID

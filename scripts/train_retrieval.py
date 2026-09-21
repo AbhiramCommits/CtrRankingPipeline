@@ -111,6 +111,21 @@ def main(argv=None) -> int:
         seed=seed,
         device=str(training_conf.get("device", "auto")),
     )
+    # CI smoke runs override the epoch count without touching the config.
+    cfg_epochs = os.environ.get("CTR_RETRIEVAL_EPOCHS")
+    if cfg_epochs:
+        cfg = TwoTowerConfig(
+            embedding_dim=cfg.embedding_dim,
+            tower_mlp_dims=cfg.tower_mlp_dims,
+            output_dim=cfg.output_dim,
+            lr=cfg.lr,
+            epochs=int(cfg_epochs),
+            batch_size=cfg.batch_size,
+            eval_batch_size=cfg.eval_batch_size,
+            recall_ks=cfg.recall_ks,
+            seed=cfg.seed,
+            device=cfg.device,
+        )
     faiss_cfg = FaissConfig(
         nlist=int(faiss_conf.get("nlist", 256)),
         nprobe=int(faiss_conf.get("nprobe", 8)),

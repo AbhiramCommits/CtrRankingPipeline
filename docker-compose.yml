@@ -1,0 +1,9 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      # Trained models + vocabularies produced by `make train`.
+      - ./artifacts:/app/artifacts:ro
+    restart: unless-stopped

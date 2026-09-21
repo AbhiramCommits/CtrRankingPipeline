@@ -2,7 +2,7 @@ SHELL := /bin/bash
 PYTHON := .venv/bin/python
 ROWS ?= 1000000
 
-.PHONY: install data features train eval serve test lint clean
+.PHONY: install data features train eval serve bench test lint clean
 
 $(PYTHON):
 	@$(MAKE) install
@@ -31,6 +31,9 @@ train: $(PYTHON)
 
 eval: $(PYTHON)
 	$(PYTHON) scripts/run_eval.py --config configs/eval.yaml
+
+bench: $(PYTHON)
+	$(PYTHON) scripts/benchmark.py
 
 serve: $(PYTHON)
 	$(PYTHON) scripts/run_serve.py

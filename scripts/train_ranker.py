@@ -123,6 +123,19 @@ def main(argv=None) -> int:
             grad_clip=_float(training_conf.get("grad_clip"), 1.0),
             seed=seed,
         )
+        # CI smoke runs override the epoch count without touching the config.
+        cfg_epochs = os.environ.get("CTR_RANKER_EPOCHS")
+        if cfg_epochs:
+            train_cfg = TrainConfig(
+                device=train_cfg.device,
+                optimizer=train_cfg.optimizer,
+                lr=train_cfg.lr,
+                batch_size=train_cfg.batch_size,
+                epochs=int(cfg_epochs),
+                patience=train_cfg.patience,
+                grad_clip=train_cfg.grad_clip,
+                seed=train_cfg.seed,
+            )
         device = resolve_device(train_cfg.device)
         train_metrics = train_dlrm(
             model,

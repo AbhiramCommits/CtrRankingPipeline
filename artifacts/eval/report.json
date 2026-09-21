@@ -1,0 +1,1225 @@
+{
+  "global": {
+    "dlrm": {
+      "auc": 0.5505319782697308,
+      "logloss": 0.1735289867679954,
+      "ne": 1.0053746175533773,
+      "ece": 0.009009622322886527,
+      "gauc": 0.5502135965563746,
+      "calibration_ratio": 0.9523297686592634,
+      "volume": 95047
+    },
+    "logistic_regression": {
+      "auc": 0.5757940092930277,
+      "logloss": 0.18092789314594446,
+      "ne": 1.0482416497915654,
+      "ece": 0.018548175410209342,
+      "gauc": 0.5721855653874808,
+      "calibration_ratio": 0.8137509161931015,
+      "volume": 95047
+    },
+    "lightgbm": {
+      "auc": 0.5879175616272958,
+      "logloss": 0.1717336167037246,
+      "ne": 0.9949727848374039,
+      "ece": 0.008039288141351434,
+      "gauc": 0.5844033340300294,
+      "calibration_ratio": 0.8095898649887343,
+      "volume": 95047
+    }
+  },
+  "slices": {
+    "dlrm": {
+      "user_segment_decile": [
+        {
+          "slice": "user_segment_decile_0",
+          "volume": 86546,
+          "auc": 0.5518076503644265,
+          "logloss": 0.1726514290625699,
+          "ne": 1.0043961353968056,
+          "calibration_ratio": 0.9633360730365429,
+          "flags": []
+        },
+        {
+          "slice": "user_segment_decile_1",
+          "volume": 3237,
+          "auc": 0.5516126191576954,
+          "logloss": 0.18690412189275407,
+          "ne": 1.011500208262784,
+          "calibration_ratio": 0.84057887920755,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_2",
+          "volume": 1632,
+          "auc": 0.5921254395572721,
+          "logloss": 0.14641459119785302,
+          "ne": 0.9934452632683154,
+          "calibration_ratio": 1.1145664469931615,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_3",
+          "volume": 1071,
+          "auc": 0.45101578046184465,
+          "logloss": 0.1738249230727489,
+          "ne": 1.0506603594867419,
+          "calibration_ratio": 0.9330083702003495,
+          "flags": [
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_4",
+          "volume": 773,
+          "auc": 0.5640171858216971,
+          "logloss": 0.19959014343239417,
+          "ne": 1.0181516522513105,
+          "calibration_ratio": 0.7281962376161429,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_5",
+          "volume": 594,
+          "auc": 0.49570923775870773,
+          "logloss": 0.19616290802476047,
+          "ne": 1.0324332371831593,
+          "calibration_ratio": 0.7715662167008434,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_6",
+          "volume": 435,
+          "auc": 0.5698702275719392,
+          "logloss": 0.2328485967598603,
+          "ne": 1.0287807634267254,
+          "calibration_ratio": 0.5945236800919073,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_7",
+          "volume": 364,
+          "auc": 0.544603629417383,
+          "logloss": 0.1746552230918027,
+          "ne": 1.0168153265522457,
+          "calibration_ratio": 0.848434346728027,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_8",
+          "volume": 198,
+          "auc": 0.4926242236024845,
+          "logloss": 0.2786647489447538,
+          "ne": 1.0908176863794978,
+          "calibration_ratio": 0.5054051437016045,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_9",
+          "volume": 197,
+          "auc": 0.5834586466165412,
+          "logloss": 0.15305618451199682,
+          "ne": 0.9972508372141863,
+          "calibration_ratio": 0.9123502779485924,
+          "flags": []
+        }
+      ],
+      "placement_decile": [
+        {
+          "slice": "placement_decile_0",
+          "volume": 87217,
+          "auc": 0.5506396900773786,
+          "logloss": 0.1728235716425095,
+          "ne": 1.0053297647887103,
+          "calibration_ratio": 0.9563744752302874,
+          "flags": []
+        },
+        {
+          "slice": "placement_decile_1",
+          "volume": 2885,
+          "auc": 0.540743296973698,
+          "logloss": 0.2028470047400046,
+          "ne": 1.0127288942235817,
+          "calibration_ratio": 0.7992147378247129,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_2",
+          "volume": 1481,
+          "auc": 0.5315695524671682,
+          "logloss": 0.1609054033103127,
+          "ne": 1.0136645313138568,
+          "calibration_ratio": 1.0744803985580802,
+          "flags": []
+        },
+        {
+          "slice": "placement_decile_3",
+          "volume": 995,
+          "auc": 0.5943188692734972,
+          "logloss": 0.16237171095906783,
+          "ne": 1.0013570558762173,
+          "calibration_ratio": 1.0292196338873747,
+          "flags": []
+        },
+        {
+          "slice": "placement_decile_4",
+          "volume": 727,
+          "auc": 0.5014817449027975,
+          "logloss": 0.148274350794334,
+          "ne": 1.0221418804281626,
+          "calibration_ratio": 1.2056563947310983,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_5",
+          "volume": 571,
+          "auc": 0.6370353443022548,
+          "logloss": 0.17037434188193554,
+          "ne": 0.9772109817144095,
+          "calibration_ratio": 0.9642925012158229,
+          "flags": []
+        },
+        {
+          "slice": "placement_decile_6",
+          "volume": 404,
+          "auc": 0.5280155197991555,
+          "logloss": 0.22148742594680365,
+          "ne": 1.0139632485224785,
+          "calibration_ratio": 0.6912532809959805,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_7",
+          "volume": 364,
+          "auc": 0.5362877328195248,
+          "logloss": 0.19991683018240955,
+          "ne": 1.0153513862746255,
+          "calibration_ratio": 0.8251245158931447,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_8",
+          "volume": 202,
+          "auc": 0.6378865979381443,
+          "logloss": 0.1644612173049218,
+          "ne": 0.9866678648049082,
+          "calibration_ratio": 0.9835815466940403,
+          "flags": []
+        },
+        {
+          "slice": "placement_decile_9",
+          "volume": 201,
+          "auc": 0.4579015544041451,
+          "logloss": 0.17229243584369172,
+          "ne": 1.029772386024744,
+          "calibration_ratio": 0.9322467275196685,
+          "flags": [
+            "auc_below_global"
+          ]
+        }
+      ],
+      "pit_impression_decile": [
+        {
+          "slice": "pit_impression_decile_0",
+          "volume": 16188,
+          "auc": 0.5623677790677734,
+          "logloss": 0.17727933141712718,
+          "ne": 1.0017807300292465,
+          "calibration_ratio": 0.8761483586255073,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_1",
+          "volume": 14221,
+          "auc": 0.5587079770969223,
+          "logloss": 0.15396507334088497,
+          "ne": 1.0036505682246004,
+          "calibration_ratio": 1.0949132052785024,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_2",
+          "volume": 12195,
+          "auc": 0.5522043880197345,
+          "logloss": 0.1784399918447808,
+          "ne": 1.0037434755406365,
+          "calibration_ratio": 0.910582449080019,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_3",
+          "volume": 11880,
+          "auc": 0.5363328428828165,
+          "logloss": 0.1780379851949747,
+          "ne": 1.0140371419538694,
+          "calibration_ratio": 0.873771249727782,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_4",
+          "volume": 10451,
+          "auc": 0.5543880208701687,
+          "logloss": 0.16966583766085497,
+          "ne": 1.001276609824721,
+          "calibration_ratio": 1.0144197689919747,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_5",
+          "volume": 8530,
+          "auc": 0.5347602349804447,
+          "logloss": 0.18449042463182813,
+          "ne": 1.0109114349941182,
+          "calibration_ratio": 0.9348076625013348,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_6",
+          "volume": 6821,
+          "auc": 0.5479649859363263,
+          "logloss": 0.19045226510836394,
+          "ne": 1.0082999170856888,
+          "calibration_ratio": 0.9063798852913012,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_7",
+          "volume": 5429,
+          "auc": 0.531007840887359,
+          "logloss": 0.16043917593428658,
+          "ne": 1.0169475503951977,
+          "calibration_ratio": 1.1369433280080559,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_8",
+          "volume": 4739,
+          "auc": 0.5525012166193476,
+          "logloss": 0.1770012413821583,
+          "ne": 1.0045546332714215,
+          "calibration_ratio": 0.9542420126202672,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_9",
+          "volume": 4593,
+          "auc": 0.5660142004975004,
+          "logloss": 0.17137349332648533,
+          "ne": 1.0028034308002993,
+          "calibration_ratio": 0.9532804423868855,
+          "flags": []
+        }
+      ],
+      "time_of_day": [
+        {
+          "slice": "time_of_day_00-03",
+          "volume": 15886,
+          "auc": 0.5449722102411598,
+          "logloss": 0.1813378498645853,
+          "ne": 1.008128796658088,
+          "calibration_ratio": 0.9726904446811778,
+          "flags": []
+        },
+        {
+          "slice": "time_of_day_04-07",
+          "volume": 16050,
+          "auc": 0.5492667508957403,
+          "logloss": 0.1720831010392332,
+          "ne": 1.0057489253313971,
+          "calibration_ratio": 0.9911805564993398,
+          "flags": []
+        },
+        {
+          "slice": "time_of_day_08-11",
+          "volume": 15816,
+          "auc": 0.5351275678871219,
+          "logloss": 0.1724666450475166,
+          "ne": 1.0096456950927148,
+          "calibration_ratio": 0.9570014711881094,
+          "flags": []
+        },
+        {
+          "slice": "time_of_day_12-15",
+          "volume": 15890,
+          "auc": 0.5475435842380472,
+          "logloss": 0.16868759956860413,
+          "ne": 1.0063450896870294,
+          "calibration_ratio": 0.9666075113145722,
+          "flags": []
+        },
+        {
+          "slice": "time_of_day_16-19",
+          "volume": 15572,
+          "auc": 0.5608813090371891,
+          "logloss": 0.17213243728410757,
+          "ne": 1.001778378420011,
+          "calibration_ratio": 0.9227915146363452,
+          "flags": []
+        },
+        {
+          "slice": "time_of_day_20-23",
+          "volume": 15833,
+          "auc": 0.5642260814219092,
+          "logloss": 0.1744532319904249,
+          "ne": 1.0011562761421833,
+          "calibration_ratio": 0.9029373322578526,
+          "flags": []
+        }
+      ]
+    },
+    "logistic_regression": {
+      "user_segment_decile": [
+        {
+          "slice": "user_segment_decile_0",
+          "volume": 86546,
+          "auc": 0.5778837267649057,
+          "logloss": 0.179597132272549,
+          "ne": 1.0448026208779537,
+          "calibration_ratio": 0.8205582143597656,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_1",
+          "volume": 3237,
+          "auc": 0.5511536005988156,
+          "logloss": 0.20149363962695052,
+          "ne": 1.090456734620512,
+          "calibration_ratio": 0.7415266612735316,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_2",
+          "volume": 1632,
+          "auc": 0.5606617858995792,
+          "logloss": 0.15702466637082643,
+          "ne": 1.065436236553673,
+          "calibration_ratio": 0.933458417007668,
+          "flags": []
+        },
+        {
+          "slice": "user_segment_decile_3",
+          "volume": 1071,
+          "auc": 0.5293396270072654,
+          "logloss": 0.18486841791959263,
+          "ne": 1.117411214661398,
+          "calibration_ratio": 0.8866026474948048,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_4",
+          "volume": 773,
+          "auc": 0.5770139634801289,
+          "logloss": 0.21066497467761316,
+          "ne": 1.0746467152680048,
+          "calibration_ratio": 0.6326036028070743,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_5",
+          "volume": 594,
+          "auc": 0.5073826350328117,
+          "logloss": 0.21152323831351397,
+          "ne": 1.113276836433934,
+          "calibration_ratio": 0.6788501808478032,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_6",
+          "volume": 435,
+          "auc": 0.5734436712431823,
+          "logloss": 0.24647117379100736,
+          "ne": 1.088968565255724,
+          "calibration_ratio": 0.5356722291773902,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_7",
+          "volume": 364,
+          "auc": 0.6105062082139445,
+          "logloss": 0.17862232645876755,
+          "ne": 1.03991118039583,
+          "calibration_ratio": 0.7047396180181144,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_8",
+          "volume": 198,
+          "auc": 0.6277173913043478,
+          "logloss": 0.27171067087883405,
+          "ne": 1.0635963339282308,
+          "calibration_ratio": 0.509569670073688,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_9",
+          "volume": 197,
+          "auc": 0.5699248120300753,
+          "logloss": 0.16358263123317163,
+          "ne": 1.065836813266394,
+          "calibration_ratio": 0.8788647787296212,
+          "flags": [
+            "calibration"
+          ]
+        }
+      ],
+      "placement_decile": [
+        {
+          "slice": "placement_decile_0",
+          "volume": 87217,
+          "auc": 0.5755179360771066,
+          "logloss": 0.17994908431125212,
+          "ne": 1.046779492433987,
+          "calibration_ratio": 0.8126558106821332,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_1",
+          "volume": 2885,
+          "auc": 0.5940624265430339,
+          "logloss": 0.2138500235860921,
+          "ne": 1.067662291556226,
+          "calibration_ratio": 0.7119354209156982,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_2",
+          "volume": 1481,
+          "auc": 0.5496111181945684,
+          "logloss": 0.17131882074504126,
+          "ne": 1.079266504188519,
+          "calibration_ratio": 0.9396281207086179,
+          "flags": [
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_3",
+          "volume": 995,
+          "auc": 0.5169938953967992,
+          "logloss": 0.17883375532413456,
+          "ne": 1.1028795697534186,
+          "calibration_ratio": 0.995017607984329,
+          "flags": [
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_4",
+          "volume": 727,
+          "auc": 0.4977477477477477,
+          "logloss": 0.16026776983529326,
+          "ne": 1.104819537255627,
+          "calibration_ratio": 1.1077877480396032,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_5",
+          "volume": 571,
+          "auc": 0.7387263863497867,
+          "logloss": 0.1639775412531152,
+          "ne": 0.9405210449946383,
+          "calibration_ratio": 0.9009501502490214,
+          "flags": []
+        },
+        {
+          "slice": "placement_decile_6",
+          "volume": 404,
+          "auc": 0.5671573661987904,
+          "logloss": 0.23858155914062573,
+          "ne": 1.09221971274292,
+          "calibration_ratio": 0.661785151503231,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_7",
+          "volume": 364,
+          "auc": 0.541907514450867,
+          "logloss": 0.21947927040398504,
+          "ne": 1.1147064569796175,
+          "calibration_ratio": 0.7228714307097511,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_8",
+          "volume": 202,
+          "auc": 0.6997422680412371,
+          "logloss": 0.1505342917843038,
+          "ne": 0.9031147323892094,
+          "calibration_ratio": 0.8421202777681174,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_9",
+          "volume": 201,
+          "auc": 0.5233160621761658,
+          "logloss": 0.18200457395637779,
+          "ne": 1.087820736137897,
+          "calibration_ratio": 0.9072876980499133,
+          "flags": [
+            "auc_below_global"
+          ]
+        }
+      ],
+      "pit_impression_decile": [
+        {
+          "slice": "pit_impression_decile_0",
+          "volume": 16188,
+          "auc": 0.5625826526136919,
+          "logloss": 0.18600321990673946,
+          "ne": 1.0510782048671576,
+          "calibration_ratio": 0.8306034473020091,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_1",
+          "volume": 14221,
+          "auc": 0.5896433737861975,
+          "logloss": 0.1583408762493494,
+          "ne": 1.0321750704394348,
+          "calibration_ratio": 0.8994738367902539,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_2",
+          "volume": 12195,
+          "auc": 0.5673123387272573,
+          "logloss": 0.18716285836096844,
+          "ne": 1.0528105050955996,
+          "calibration_ratio": 0.7803138076728224,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_3",
+          "volume": 11880,
+          "auc": 0.5661148923939009,
+          "logloss": 0.18620945906477032,
+          "ne": 1.060578771816754,
+          "calibration_ratio": 0.7506271011180427,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_4",
+          "volume": 10451,
+          "auc": 0.6026716211157223,
+          "logloss": 0.17404437189514127,
+          "ne": 1.0271163662220641,
+          "calibration_ratio": 0.8340198642578517,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_5",
+          "volume": 8530,
+          "auc": 0.5819698663572073,
+          "logloss": 0.19163884151702626,
+          "ne": 1.0500810362662327,
+          "calibration_ratio": 0.7907451146965623,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_6",
+          "volume": 6821,
+          "auc": 0.5844360404177543,
+          "logloss": 0.1978839806305046,
+          "ne": 1.0476451994351281,
+          "calibration_ratio": 0.7689906140229391,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_7",
+          "volume": 5429,
+          "auc": 0.5649894817364697,
+          "logloss": 0.16639208956680523,
+          "ne": 1.0546802357013325,
+          "calibration_ratio": 0.911930244288651,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_8",
+          "volume": 4739,
+          "auc": 0.5806018501343191,
+          "logloss": 0.18550672210436522,
+          "ne": 1.0528267244780933,
+          "calibration_ratio": 0.7744902504916651,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_9",
+          "volume": 4593,
+          "auc": 0.5427162074045451,
+          "logloss": 0.1858057070413687,
+          "ne": 1.0872544923174743,
+          "calibration_ratio": 0.7987581554059054,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        }
+      ],
+      "time_of_day": [
+        {
+          "slice": "time_of_day_00-03",
+          "volume": 15886,
+          "auc": 0.5639144589982823,
+          "logloss": 0.1913143880326617,
+          "ne": 1.0635923164125516,
+          "calibration_ratio": 0.7262479884662418,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_04-07",
+          "volume": 16050,
+          "auc": 0.5651182037485228,
+          "logloss": 0.18086044405722446,
+          "ne": 1.0570485779660688,
+          "calibration_ratio": 0.8169507713103632,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_08-11",
+          "volume": 15816,
+          "auc": 0.5749086821196284,
+          "logloss": 0.1785408893201168,
+          "ne": 1.045205235194412,
+          "calibration_ratio": 0.8314228701851277,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_12-15",
+          "volume": 15890,
+          "auc": 0.5835379553827093,
+          "logloss": 0.17478998694187498,
+          "ne": 1.0427503001717615,
+          "calibration_ratio": 0.8521216281687684,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_16-19",
+          "volume": 15572,
+          "auc": 0.597659586898778,
+          "logloss": 0.17717286385174208,
+          "ne": 1.0311127121059736,
+          "calibration_ratio": 0.8306033193441118,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_20-23",
+          "volume": 15833,
+          "auc": 0.5724589856762159,
+          "logloss": 0.18281257693075095,
+          "ne": 1.0491290798326542,
+          "calibration_ratio": 0.8321215997756191,
+          "flags": [
+            "calibration"
+          ]
+        }
+      ]
+    },
+    "lightgbm": {
+      "user_segment_decile": [
+        {
+          "slice": "user_segment_decile_0",
+          "volume": 86546,
+          "auc": 0.5902896882335656,
+          "logloss": 0.17090511449175866,
+          "ne": 0.994236986320349,
+          "calibration_ratio": 0.8133082448279593,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_1",
+          "volume": 3237,
+          "auc": 0.5465557096625058,
+          "logloss": 0.18576484254584358,
+          "ne": 1.005334580212426,
+          "calibration_ratio": 0.7676246033650572,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_2",
+          "volume": 1632,
+          "auc": 0.5742318556522741,
+          "logloss": 0.1461620327523453,
+          "ne": 0.9917316158146336,
+          "calibration_ratio": 0.9965384366310306,
+          "flags": []
+        },
+        {
+          "slice": "user_segment_decile_3",
+          "volume": 1071,
+          "auc": 0.5357489934749411,
+          "logloss": 0.166358246063481,
+          "ne": 1.0055290778957495,
+          "calibration_ratio": 0.8403488057368244,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_4",
+          "volume": 773,
+          "auc": 0.5835302542069459,
+          "logloss": 0.19806859475853722,
+          "ne": 1.0103899097642974,
+          "calibration_ratio": 0.6854462052991436,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_5",
+          "volume": 594,
+          "auc": 0.5721226653205452,
+          "logloss": 0.19166159692994328,
+          "ne": 1.0087421977711417,
+          "calibration_ratio": 0.7028891915239399,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_6",
+          "volume": 435,
+          "auc": 0.6313710739138612,
+          "logloss": 0.23222485196991133,
+          "ne": 1.0260249098372407,
+          "calibration_ratio": 0.5568673615217263,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_7",
+          "volume": 364,
+          "auc": 0.5870105062082139,
+          "logloss": 0.17130071435410585,
+          "ne": 0.9972859025982267,
+          "calibration_ratio": 0.7818108586746267,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_8",
+          "volume": 198,
+          "auc": 0.6374223602484472,
+          "logloss": 0.2656984275261031,
+          "ne": 1.0400617411646635,
+          "calibration_ratio": 0.4661536876783144,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "user_segment_decile_9",
+          "volume": 197,
+          "auc": 0.4601503759398496,
+          "logloss": 0.15558650823221146,
+          "ne": 1.0137373807436258,
+          "calibration_ratio": 0.9268591611772116,
+          "flags": [
+            "auc_below_global"
+          ]
+        }
+      ],
+      "placement_decile": [
+        {
+          "slice": "placement_decile_0",
+          "volume": 87217,
+          "auc": 0.5873084675515545,
+          "logloss": 0.17103564666342969,
+          "ne": 0.9949292495025417,
+          "calibration_ratio": 0.8122378207954098,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_1",
+          "volume": 2885,
+          "auc": 0.5996689122617493,
+          "logloss": 0.20095389647760178,
+          "ne": 1.0032774091514405,
+          "calibration_ratio": 0.6927473294315393,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_2",
+          "volume": 1481,
+          "auc": 0.544574780058651,
+          "logloss": 0.1593734994305556,
+          "ne": 1.0040139130229524,
+          "calibration_ratio": 0.9147428546742211,
+          "flags": [
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_3",
+          "volume": 995,
+          "auc": 0.5464994775339602,
+          "logloss": 0.16216057136098413,
+          "ne": 1.000054944042406,
+          "calibration_ratio": 0.8981137041448574,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "placement_decile_4",
+          "volume": 727,
+          "auc": 0.5966690374585112,
+          "logloss": 0.14314325629799116,
+          "ne": 0.9867702429935721,
+          "calibration_ratio": 1.0258492452076893,
+          "flags": []
+        },
+        {
+          "slice": "placement_decile_5",
+          "volume": 571,
+          "auc": 0.6732175502742231,
+          "logloss": 0.17052229397171642,
+          "ne": 0.9780595860600196,
+          "calibration_ratio": 0.8108996974000682,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_6",
+          "volume": 404,
+          "auc": 0.6382517402715965,
+          "logloss": 0.21948901221364658,
+          "ne": 1.0048145662796746,
+          "calibration_ratio": 0.5932728959991305,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_7",
+          "volume": 364,
+          "auc": 0.5902376364804109,
+          "logloss": 0.19837436349617707,
+          "ne": 1.0075174000778677,
+          "calibration_ratio": 0.6776068679062146,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_8",
+          "volume": 202,
+          "auc": 0.6662371134020618,
+          "logloss": 0.16106524309865078,
+          "ne": 0.9662940728924869,
+          "calibration_ratio": 0.8599452861982335,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "placement_decile_9",
+          "volume": 201,
+          "auc": 0.5498704663212435,
+          "logloss": 0.16698892416174943,
+          "ne": 0.9980738970441915,
+          "calibration_ratio": 0.8234429449563554,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        }
+      ],
+      "pit_impression_decile": [
+        {
+          "slice": "pit_impression_decile_0",
+          "volume": 16188,
+          "auc": 0.5943416229913672,
+          "logloss": 0.17625817363589757,
+          "ne": 0.9960103100971662,
+          "calibration_ratio": 0.7835800748986511,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_1",
+          "volume": 14221,
+          "auc": 0.5855503004368678,
+          "logloss": 0.15199565659520917,
+          "ne": 0.990812551179707,
+          "calibration_ratio": 0.9204366488757467,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_2",
+          "volume": 12195,
+          "auc": 0.590691367429936,
+          "logloss": 0.1769016634285651,
+          "ne": 0.9950902185266011,
+          "calibration_ratio": 0.7746972296743082,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_3",
+          "volume": 11880,
+          "auc": 0.5664795036333803,
+          "logloss": 0.17583123869514086,
+          "ne": 1.0014683470910335,
+          "calibration_ratio": 0.7800385023685862,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_4",
+          "volume": 10451,
+          "auc": 0.5980975490847849,
+          "logloss": 0.16804812272543287,
+          "ne": 0.9917297254988379,
+          "calibration_ratio": 0.831632918210597,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_5",
+          "volume": 8530,
+          "auc": 0.5976405974164261,
+          "logloss": 0.18196585563001408,
+          "ne": 0.997078111788003,
+          "calibration_ratio": 0.7594508564340946,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_6",
+          "volume": 6821,
+          "auc": 0.5930603460329061,
+          "logloss": 0.18882666750317004,
+          "ne": 0.9996936139283118,
+          "calibration_ratio": 0.7356485497976365,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_7",
+          "volume": 5429,
+          "auc": 0.599036622681201,
+          "logloss": 0.15600634679860179,
+          "ne": 0.9888499569950576,
+          "calibration_ratio": 0.9299542789923099,
+          "flags": []
+        },
+        {
+          "slice": "pit_impression_decile_8",
+          "volume": 4739,
+          "auc": 0.5811550573175016,
+          "logloss": 0.17540460125613724,
+          "ne": 0.9954930457721645,
+          "calibration_ratio": 0.808873087457401,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "pit_impression_decile_9",
+          "volume": 4593,
+          "auc": 0.5490907334508658,
+          "logloss": 0.17138022601389558,
+          "ne": 1.0028428275699073,
+          "calibration_ratio": 0.8349011306725808,
+          "flags": [
+            "calibration",
+            "auc_below_global"
+          ]
+        }
+      ],
+      "time_of_day": [
+        {
+          "slice": "time_of_day_00-03",
+          "volume": 15886,
+          "auc": 0.5832651358652472,
+          "logloss": 0.17964253646730355,
+          "ne": 0.9987038792652976,
+          "calibration_ratio": 0.764911371570954,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_04-07",
+          "volume": 16050,
+          "auc": 0.5757887391863455,
+          "logloss": 0.17067179187963039,
+          "ne": 0.9975004531571464,
+          "calibration_ratio": 0.8170385183899961,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_08-11",
+          "volume": 15816,
+          "auc": 0.5898906834619495,
+          "logloss": 0.16962726320237517,
+          "ne": 0.9930235264647947,
+          "calibration_ratio": 0.8190856144909142,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_12-15",
+          "volume": 15890,
+          "auc": 0.5972635372089214,
+          "logloss": 0.1663238059931586,
+          "ne": 0.9922433296064616,
+          "calibration_ratio": 0.8422155443239419,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_16-19",
+          "volume": 15572,
+          "auc": 0.597892814442476,
+          "logloss": 0.17057044069614222,
+          "ne": 0.9926878523478864,
+          "calibration_ratio": 0.814794163519533,
+          "flags": [
+            "calibration"
+          ]
+        },
+        {
+          "slice": "time_of_day_20-23",
+          "volume": 15833,
+          "auc": 0.5842496371466641,
+          "logloss": 0.1735519799337383,
+          "ne": 0.9959841498213172,
+          "calibration_ratio": 0.8036130637820272,
+          "flags": [
+            "calibration"
+          ]
+        }
+      ]
+    }
+  },
+  "two_stage": {
+    "num_queries": 3942,
+    "search_k": 100,
+    "recall_at_k": {
+      "10": 0.904363267376966,
+      "50": 0.9682902080162354,
+      "100": 1.0
+    },
+    "mrr_on_shortlist": 0.1488591400779974,
+    "precision_at_1": 0.0076103500761035,
+    "cap_note": "Retrieval recall@k caps the achievable top-line quality: a positive whose ad is not retrieved can never be ranked by the downstream ranker, however good it is."
+  }
+}

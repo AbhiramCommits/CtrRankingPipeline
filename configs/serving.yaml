@@ -1,0 +1,13 @@
+# Configuration for the serving layer (ctr/serving/app.py).
+serving:
+  retrieval_artifacts: "artifacts/retrieval"
+  ranker_artifacts: "artifacts/ranker"
+  features_artifacts: "artifacts"
+  # Retrieval shortlist size when candidates are not provided.
+  default_k: 200
+  # Graceful-degradation latency budget in ms.
+  latency_budget_ms: 20
+  # Candidates kept when retrieval blows the budget.
+  degraded_candidate_limit: 100
+  # Fraction of the budget retrieval is allowed to consume alone.
+  retrieval_budget_fraction: 0.5

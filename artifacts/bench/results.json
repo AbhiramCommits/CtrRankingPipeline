@@ -1,0 +1,46 @@
+{
+  "load_test": {
+    "concurrency": 8,
+    "duration_seconds": 10.011,
+    "requests": 6361,
+    "qps": 635.41,
+    "degraded_requests": 4,
+    "latency_ms": {
+      "p50": 11.918,
+      "p95": 14.388,
+      "p99": 24.781,
+      "mean": 12.417
+    },
+    "server_side_split_ms": {
+      "retrieval_mean": 0.322,
+      "ranking_mean": 0.784
+    }
+  },
+  "batch_sweep": [
+    {
+      "batch_size": 1,
+      "mean_latency_ms": 2.087,
+      "items_scored_per_second": 479.1
+    },
+    {
+      "batch_size": 8,
+      "mean_latency_ms": 10.347,
+      "items_scored_per_second": 773.1
+    },
+    {
+      "batch_size": 32,
+      "mean_latency_ms": 49.607,
+      "items_scored_per_second": 645.1
+    },
+    {
+      "batch_size": 128,
+      "mean_latency_ms": 180.341,
+      "items_scored_per_second": 709.8
+    },
+    {
+      "batch_size": 512,
+      "mean_latency_ms": 825.306,
+      "items_scored_per_second": 620.4
+    }
+  ]
+}
