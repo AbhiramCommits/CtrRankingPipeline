@@ -148,10 +148,10 @@ def train_dlrm(
                 break
 
     model.load_state_dict(best_state)
-    torch.save(
-        {"state_dict": best_state, "config": asdict(cfg)},
-        os.path.join(artifact_dir, "model.pt"),
-    )
+    checkpoint = {"state_dict": best_state, "config": asdict(cfg)}
+    if hasattr(model, "config"):
+        checkpoint["model_config"] = model.config()
+    torch.save(checkpoint, os.path.join(artifact_dir, "model.pt"))
     metrics = {
         "best_val_logloss": best_val_logloss,
         "final_val": evaluate(model, val_dataset, device, cfg.batch_size),

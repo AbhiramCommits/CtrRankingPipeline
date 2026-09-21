@@ -103,6 +103,14 @@ class TwoTower(nn.Module):
         output_dim: int = TOWER_OUTPUT_DIM,
     ):
         super().__init__()
+        self.context_fields = list(context_fields)
+        self.context_vocab_sizes = dict(context_vocab_sizes)
+        self.numeric_dim = int(numeric_dim)
+        self.ad_fields = list(ad_fields)
+        self.ad_vocab_sizes = dict(ad_vocab_sizes)
+        self.embedding_dim = int(embedding_dim)
+        self.tower_mlp_dims = tuple(tower_mlp_dims)
+        self.output_dim = int(output_dim)
         self.context_tower = Tower(
             context_fields,
             context_vocab_sizes,
@@ -114,6 +122,29 @@ class TwoTower(nn.Module):
         self.ad_tower = Tower(
             ad_fields, ad_vocab_sizes, embedding_dim, tower_mlp_dims, output_dim
         )
+
+    def config(self) -> dict:
+        """Structural hyperparameters (enough to reconstruct the model)."""
+        return {
+            "context_fields": self.context_fields,
+            "context_vocab_sizes": self.context_vocab_sizes,
+            "numeric_dim": self.numeric_dim,
+            "ad_fields": self.ad_fields,
+            "ad_vocab_sizes": self.ad_vocab_sizes,
+            "embedding_dim": self.embedding_dim,
+            "tower_mlp_dims": self.tower_mlp_dims,
+            "output_dim": self.output_dim,
+        }
+
+    @classmethod
+    def from_checkpoint(cls, path: str, device: str = "cpu") -> TwoTower:
+        """Load a checkpoint produced by :func:`train_two_tower`."""
+        checkpoint = torch.load(path, map_location="cpu")
+        model = cls(**checkpoint["model_config"])
+        model.load_state_dict(checkpoint["state_dict"])
+        model.to(torch.device(device))
+        model.eval()
+        return model
 
     def forward(
         self,
@@ -260,10 +291,10 @@ def train_two_tower(
             best_state = copy.deepcopy(model.state_dict())
 
     model.load_state_dict(best_state)
-    torch.save(
-        {"state_dict": best_state, "config": asdict(cfg)},
-        os.path.join(artifact_dir, "model.pt"),
-    )
+    checkpoint = {"state_dict": best_state, "config": asdict(cfg)}
+    if hasattr(model, "config"):
+        checkpoint["model_config"] = model.config()
+    torch.save(checkpoint, os.path.join(artifact_dir, "model.pt"))
     metrics = {"history": history, "final_val_recall": recalls}
     with open(os.path.join(artifact_dir, "metrics.json"), "w", encoding="utf-8") as fh:
         json.dump(metrics, fh, indent=2)

@@ -30,7 +30,7 @@ train: $(PYTHON)
 	$(PYTHON) scripts/train_ranker.py --config configs/ranker.yaml
 
 eval: $(PYTHON)
-	$(PYTHON) scripts/run_eval.py
+	$(PYTHON) scripts/run_eval.py --config configs/eval.yaml
 
 serve: $(PYTHON)
 	$(PYTHON) scripts/run_serve.py

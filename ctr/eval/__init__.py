@@ -1,1 +1,1 @@
-"""Offline evaluation and metrics (TODO in a later step)."""
+"""Offline evaluation: metrics, per-slice analysis and report generation."""

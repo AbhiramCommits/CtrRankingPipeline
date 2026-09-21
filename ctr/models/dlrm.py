@@ -54,7 +54,11 @@ class DLRM(nn.Module):
         top_mlp_dims: Sequence[int] = (128, 64),
     ):
         super().__init__()
+        self.field_vocab_sizes = [int(v) for v in field_vocab_sizes]
+        self.num_numeric = int(num_numeric)
         self.embedding_dim = embedding_dim
+        self.bottom_mlp_dims = tuple(bottom_mlp_dims)
+        self.top_mlp_dims = tuple(top_mlp_dims)
         self.embeddings = nn.ModuleList(
             [
                 nn.Embedding(vocab_size, embedding_dim, padding_idx=0)
@@ -66,6 +70,26 @@ class DLRM(nn.Module):
         n_fields = len(field_vocab_sizes)
         top_input_dim = bottom_mlp_dims[-1] + n_fields * (n_fields - 1) // 2
         self.top_mlp = MLP(top_input_dim, top_mlp_dims[:-1], 1)
+
+    def config(self) -> dict:
+        """Structural hyperparameters (enough to reconstruct the model)."""
+        return {
+            "field_vocab_sizes": self.field_vocab_sizes,
+            "num_numeric": self.num_numeric,
+            "embedding_dim": self.embedding_dim,
+            "bottom_mlp_dims": self.bottom_mlp_dims,
+            "top_mlp_dims": self.top_mlp_dims,
+        }
+
+    @classmethod
+    def from_checkpoint(cls, path: str, device: str = "cpu") -> DLRM:
+        """Load a checkpoint produced by :func:`ctr.models.train.train_dlrm`."""
+        checkpoint = torch.load(path, map_location="cpu")
+        model = cls(**checkpoint["model_config"])
+        model.load_state_dict(checkpoint["state_dict"])
+        model.to(torch.device(device))
+        model.eval()
+        return model
 
     def forward(
         self, categorical_indices: torch.Tensor, numeric: torch.Tensor

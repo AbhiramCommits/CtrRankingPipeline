@@ -171,6 +171,16 @@ def main(argv=None) -> int:
             early_stopping_rounds=_int(lgb_conf.get("early_stopping_rounds"), 20),
         )
 
+        # Persist the baselines so the evaluation stage can score the test
+        # split without refitting.
+        import joblib
+
+        joblib.dump(
+            logistic, os.path.join(artifacts_dir, "logistic.joblib")
+        )
+        booster.save_model(os.path.join(artifacts_dir, "lightgbm.txt"))
+        logger.info("Persisted baselines to %s", artifacts_dir)
+
         # --- Comparison report ---
         report = {
             "dlrm": {

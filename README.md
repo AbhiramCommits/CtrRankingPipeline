@@ -13,7 +13,7 @@ data → features → models → retrieval → evaluation → serving
 - [x] Step 2 — feature engineering (`ctr/features`): train-fit transforms (log1p + clip + median impute, OOV vocabularies) and point-in-time rolling aggregates
 - [x] Step 3 — model training (`ctr/models`): DLRM + LogisticRegression/LightGBM baselines
 - [x] Step 4 — retrieval (`ctr/retrieval`): two-tower + FAISS (flat / IVF) with recall + latency benchmark
-- [ ] Step 5 — evaluation (`ctr/eval`)
+- [x] Step 5 — evaluation (`ctr/eval`): AUC/logloss/NE/ECE/GAUC, flagged per-slice analysis, ROC + reliability plots, two-stage cap analysis
 - [ ] Step 6 — serving (`ctr/serving`)
 
 ## Layout
@@ -24,7 +24,7 @@ ctr/            main package
   features/     train-fit transforms (log1p/clip/impute, OOV vocabularies) + point-in-time aggregates
   models/       DLRM ranker, LR/LGBM baselines, training loop
   retrieval/    two-tower model + FAISS index (flat/IVF) with benchmarks
-  eval/         offline metrics (TODO)
+  eval/         offline metrics (AUC/logloss/NE/ECE/GAUC), slice analysis, reports
   serving/      online serving API (TODO)
 configs/        YAML configs (spark.yaml, data.yaml)
 scripts/        CLI entrypoints
@@ -39,6 +39,7 @@ make install   # uv (or venv + pip) editable install
 make data      # produce data/parquet/{train,validation,test} from data/raw/train.txt
 make features  # produce data/features/{split} + fitted artifacts (train-fit, leakage-free)
 make train     # two-tower retriever + FAISS index, then DLRM + LR/LGBM baselines
+make eval      # artifacts/eval/: metrics report, slice tables, ROC + reliability plots
 make test      # pytest with coverage
 make lint      # ruff (falls back to a syntax check)
 ```

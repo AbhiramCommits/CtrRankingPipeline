@@ -1,0 +1,11 @@
+# Configuration for the offline evaluation stage (scripts/run_eval.py).
+eval:
+  features_root: "data/features"
+  retrieval_artifacts: "artifacts/retrieval"
+  ranker_artifacts: "artifacts/ranker"
+  output_dir: "artifacts/eval"
+  # Reliability-curve / ECE bucket count.
+  n_buckets: 20
+  # Two-stage analysis: recall thresholds and shortlist size.
+  recall_ks: [10, 50, 100]
+  retrieval_search_k: 100
