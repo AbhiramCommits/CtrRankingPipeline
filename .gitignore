@@ -17,7 +17,8 @@ htmlcov/
 .ruff_cache/
 
 # Pipeline artifacts (reproducible via `make data`)
-data/
+/data/
+/artifacts/
 
 # Spark
 spark-warehouse/
