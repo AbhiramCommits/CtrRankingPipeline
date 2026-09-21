@@ -1,0 +1,39 @@
+# Configuration for the ranking stage (scripts/train_ranker.py).
+spark:
+  app_name: ctr-ranker
+  master: "local[*]"
+  driver_memory: "2g"
+  properties:
+    spark.sql.shuffle.partitions: "8"
+    spark.ui.enabled: "false"
+    spark.sql.session.timeZone: "UTC"
+    spark.sql.debug.maxToStringFields: "64"
+    spark.sql.parquet.outputTimestampType: "TIMESTAMP_MICROS"
+
+ranker:
+  features_root: "data/features"
+  features_artifacts_dir: "artifacts"
+  artifacts_dir: "artifacts/ranker"
+  seed: 42
+  dlrm:
+    embedding_dim: 16
+    bottom_mlp_dims: [128, 64]
+    top_mlp_dims: [128, 64]
+  training:
+    device: auto
+    optimizer: adagrad
+    lr: 0.01
+    batch_size: 4096
+    epochs: 8
+    patience: 3
+    grad_clip: 1.0
+  baselines:
+    logistic:
+      n_buckets: 262144
+      C: 1.0
+      max_iter: 200
+    lightgbm:
+      num_leaves: 31
+      learning_rate: 0.1
+      num_boost_round: 200
+      early_stopping_rounds: 20

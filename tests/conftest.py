@@ -6,6 +6,13 @@ import sys
 
 import pytest
 
+# torch, faiss and lightgbm each bundle their own copy of libomp on macOS;
+# loading several runtimes into one pytest process corrupts/aborts OpenMP.
+# Allow duplicate runtimes and force single-threaded OpenMP regions, before
+# any test module imports a compiled library.
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+
 # DataFrames created from Python rows are materialized in PySpark worker
 # processes; pin the workers to the same interpreter as the driver so tests
 # never pick up an incompatible `python3` from PATH.

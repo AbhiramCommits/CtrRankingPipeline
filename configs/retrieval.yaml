@@ -1,0 +1,34 @@
+# Configuration for the two-tower retrieval stage (scripts/train_retrieval.py).
+spark:
+  app_name: ctr-retrieval
+  master: "local[*]"
+  driver_memory: "2g"
+  properties:
+    spark.sql.shuffle.partitions: "8"
+    spark.ui.enabled: "false"
+    spark.sql.session.timeZone: "UTC"
+    spark.sql.debug.maxToStringFields: "64"
+    spark.sql.parquet.outputTimestampType: "TIMESTAMP_MICROS"
+
+retrieval:
+  features_root: "data/features"
+  # Where the feature-fitting artifacts (feature_stats.json) live.
+  features_artifacts_dir: "artifacts"
+  artifacts_dir: "artifacts/retrieval"
+  seed: 42
+  model:
+    embedding_dim: 32
+    tower_mlp_dims: [256, 128]
+    output_dim: 64
+  training:
+    lr: 0.001
+    epochs: 10
+    batch_size: 1024
+    eval_batch_size: 2048
+    recall_ks: [1, 10, 50]
+    device: auto
+  faiss:
+    nlist: 256
+    nprobe: 8
+    benchmark_queries: 1000
+    recall_k: 100

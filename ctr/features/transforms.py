@@ -198,6 +198,17 @@ def _transform_categorical(
     return df
 
 
+def _extra_numeric_expr(name: str) -> F.Column:
+    """Numeric expression for an extra column folded into the feature block.
+
+    Impression counts are heavy-tailed, so they enter the block log1p-scaled;
+    CTR columns are already probabilities in [0, 1] and pass through.
+    """
+    if name.endswith("_impressions"):
+        return F.log1p(F.col(name).cast("float"))
+    return F.col(name).cast("float")
+
+
 def build_feature_frame(
     df: DataFrame,
     cfg: FeatureConfig,
@@ -208,19 +219,20 @@ def build_feature_frame(
     """Apply transforms and assemble the final feature schema.
 
     Output columns: ``label``, ``event_ts``, ``ds`` (plus ``split`` when
-    present), a float32 ``numeric_features`` array (the transformed integer
-    block), the int64 ``{col}_idx`` columns, and any ``extra_numeric``
-    columns (e.g. point-in-time aggregates) carried through unchanged.
+    present), a float32 ``numeric_features`` array containing the transformed
+    integer block followed by the ``extra_numeric`` columns (e.g.
+    point-in-time aggregates), and the int64 ``{col}_idx`` columns.
     """
     df = _transform_numeric(df, cfg, numeric_stats)
     df = _transform_categorical(df, cfg, vocabs)
 
+    numeric_exprs = [F.col(f"{col}_f") for col in cfg.numeric_columns] + [
+        _extra_numeric_expr(name) for name in extra_numeric
+    ]
     meta = [LABEL_COLUMN, EVENT_TS_COLUMN, DS_COLUMN]
     if SPLIT_COLUMN in df.columns:
         meta.append(SPLIT_COLUMN)
     keep: list[str] = meta + [
-        F.array(*[F.col(f"{col}_f") for col in cfg.numeric_columns]).alias(
-            NUMERIC_BLOCK_COLUMN
-        )
-    ] + list(extra_numeric) + [f"{col}_idx" for col in cfg.categorical_columns]
+        F.array(*numeric_exprs).alias(NUMERIC_BLOCK_COLUMN)
+    ] + [f"{col}_idx" for col in cfg.categorical_columns]
     return df.select(*keep)

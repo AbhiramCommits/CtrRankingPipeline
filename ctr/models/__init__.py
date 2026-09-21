@@ -1,1 +1,1 @@
-"""CTR model definitions and training (TODO in a later step)."""
+"""CTR model definitions, baselines and training loops."""

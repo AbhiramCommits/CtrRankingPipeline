@@ -39,8 +39,9 @@ from __future__ import annotations
 import logging
 import os
 import sys
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any, Dict, Mapping
+from typing import Any
 
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
@@ -49,8 +50,8 @@ from pyspark.sql.types import IntegerType, LongType, StringType, StructField, St
 from ctr.data.synthetic import (
     ALL_COLUMNS,
     CATEGORICAL_FEATURES,
-    FIELD_SEPARATOR,
     FEATURE_COLUMNS,
+    FIELD_SEPARATOR,
     INTEGER_FEATURES,
     LABEL_COLUMN,
 )
@@ -201,7 +202,7 @@ def write_split(df: DataFrame, split_name: str, parquet_root: str) -> str:
     return out_path
 
 
-def compute_stats(df: DataFrame) -> Dict[str, Any]:
+def compute_stats(df: DataFrame) -> dict[str, Any]:
     """Aggregate row counts, positive rates and per-column null rates.
 
     Uses two passes: one group-by over (split, day) for counts and positive
@@ -216,10 +217,10 @@ def compute_stats(df: DataFrame) -> Dict[str, Any]:
         .collect()
     )
 
-    split_rows: Dict[str, int] = {name: 0 for name in SPLIT_NAMES}
-    split_pos: Dict[str, float] = {name: 0.0 for name in SPLIT_NAMES}
-    per_day_pos: Dict[int, float] = {}
-    per_day_rows: Dict[int, int] = {}
+    split_rows: dict[str, int] = {name: 0 for name in SPLIT_NAMES}
+    split_pos: dict[str, float] = {name: 0.0 for name in SPLIT_NAMES}
+    per_day_pos: dict[int, float] = {}
+    per_day_rows: dict[int, int] = {}
     for row in split_day_rows:
         name = row[SPLIT_COLUMN]
         day = int(row[DAY_COLUMN])
@@ -278,7 +279,7 @@ def log_stats(stats: Mapping[str, Any]) -> None:
         logger.info("  %-6s %.4f", col, stats["null_rates"][col])
 
 
-def run(spark: SparkSession, cfg: IngestConfig) -> Dict[str, Any]:
+def run(spark: SparkSession, cfg: IngestConfig) -> dict[str, Any]:
     """Run the full ingestion pipeline and return its statistics."""
     if cfg.train_days + cfg.validation_days + cfg.test_days != cfg.days:
         raise ValueError(

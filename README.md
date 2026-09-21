@@ -11,8 +11,8 @@ data → features → models → retrieval → evaluation → serving
 
 - [x] Step 1 — repo skeleton, dataset download/generation, Spark ingestion with time-based splits
 - [x] Step 2 — feature engineering (`ctr/features`): train-fit transforms (log1p + clip + median impute, OOV vocabularies) and point-in-time rolling aggregates
-- [ ] Step 3 — model training (`ctr/models`)
-- [ ] Step 4 — retrieval (`ctr/retrieval`)
+- [x] Step 3 — model training (`ctr/models`): DLRM + LogisticRegression/LightGBM baselines
+- [x] Step 4 — retrieval (`ctr/retrieval`): two-tower + FAISS (flat / IVF) with recall + latency benchmark
 - [ ] Step 5 — evaluation (`ctr/eval`)
 - [ ] Step 6 — serving (`ctr/serving`)
 
@@ -22,8 +22,8 @@ data → features → models → retrieval → evaluation → serving
 ctr/            main package
   data/         dataset generation + Spark ingestion
   features/     train-fit transforms (log1p/clip/impute, OOV vocabularies) + point-in-time aggregates
-  models/       CTR models (TODO)
-  retrieval/    ad retrieval / candidate ranking (TODO)
+  models/       DLRM ranker, LR/LGBM baselines, training loop
+  retrieval/    two-tower model + FAISS index (flat/IVF) with benchmarks
   eval/         offline metrics (TODO)
   serving/      online serving API (TODO)
 configs/        YAML configs (spark.yaml, data.yaml)
@@ -38,6 +38,7 @@ notebooks/      exploration notebooks
 make install   # uv (or venv + pip) editable install
 make data      # produce data/parquet/{train,validation,test} from data/raw/train.txt
 make features  # produce data/features/{split} + fitted artifacts (train-fit, leakage-free)
+make train     # two-tower retriever + FAISS index, then DLRM + LR/LGBM baselines
 make test      # pytest with coverage
 make lint      # ruff (falls back to a syntax check)
 ```

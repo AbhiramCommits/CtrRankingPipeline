@@ -42,7 +42,6 @@ import logging
 import zlib
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
 
 import numpy as np
 
@@ -60,7 +59,7 @@ DAYS = 21
 
 # Zipf cardinality per categorical feature (roughly in the same ballpark as
 # the real Criteo dump, where C19/C20/C26 are the largest).
-CATEGORICAL_CARDINALITIES: Dict[str, int] = {
+CATEGORICAL_CARDINALITIES: dict[str, int] = {
     "C1": 100_000,
     "C2": 50_000,
     "C3": 10_000,
@@ -92,7 +91,7 @@ CATEGORICAL_CARDINALITIES: Dict[str, int] = {
 # Missing-value rates per column (empty field in the TSV), loosely matching
 # the real Criteo dump where a few integer and categorical columns are
 # frequently empty.
-INTEGER_MISSING_RATES: Dict[str, float] = {
+INTEGER_MISSING_RATES: dict[str, float] = {
     "I6": 0.15,
     "I9": 0.20,
     "I10": 0.20,
@@ -101,7 +100,7 @@ INTEGER_MISSING_RATES: Dict[str, float] = {
     "I13": 0.10,
 }
 
-CATEGORICAL_MISSING_RATES: Dict[str, float] = {
+CATEGORICAL_MISSING_RATES: dict[str, float] = {
     "C1": 0.05,
     "C2": 0.03,
     "C9": 0.08,
@@ -114,7 +113,7 @@ CATEGORICAL_MISSING_RATES: Dict[str, float] = {
 # are deliberately small: the total logit variance must stay ~0.6 or the
 # realized per-day positive rates stop tracking the injected drift (the
 # sigmoid mean becomes dominated by the noise tail).
-INFORMATIVE_INTEGER_WEIGHTS: Dict[str, float] = {
+INFORMATIVE_INTEGER_WEIGHTS: dict[str, float] = {
     "I1": 0.25,
     "I2": 0.18,
     "I3": 0.16,
@@ -123,7 +122,7 @@ INFORMATIVE_INTEGER_WEIGHTS: Dict[str, float] = {
     "I12": 0.12,
 }
 
-INFORMATIVE_CATEGORICAL: List[str] = ["C1", "C3", "C5", "C7", "C14"]
+INFORMATIVE_CATEGORICAL: list[str] = ["C1", "C3", "C5", "C7", "C14"]
 CATEGORICAL_EFFECT_STD = 0.14
 
 ZIPF_EXPONENT = 1.3
@@ -161,7 +160,7 @@ class DatasetStats:
     source: str = "synthetic"
     rows: int = 0
     positive_rate: float = 0.0
-    positive_rate_by_day: Dict[int, float] = field(default_factory=dict)
+    positive_rate_by_day: dict[int, float] = field(default_factory=dict)
     output_path: str = ""
 
 
@@ -198,7 +197,7 @@ def _logit(p: np.ndarray) -> np.ndarray:
 
 def generate_synthetic(
     cfg: SyntheticConfig,
-    out_path: Optional[Union[str, Path]] = None,
+    out_path: str | Path | None = None,
 ) -> DatasetStats:
     """Generate the deterministic synthetic dataset and write it as TSV.
 
@@ -266,10 +265,10 @@ def generate_synthetic(
 def _build_chunk(
     rng: np.random.Generator,
     cfg: SyntheticConfig,
-    effect_tables: Dict[str, np.ndarray],
+    effect_tables: dict[str, np.ndarray],
     n: int,
     drift_line: np.ndarray,
-) -> Tuple[List[str], np.ndarray, np.ndarray]:
+) -> tuple[list[str], np.ndarray, np.ndarray]:
     """Generate one chunk of rows.
 
     Returns the tab-joined feature strings, the sampled labels, and the day
@@ -277,8 +276,8 @@ def _build_chunk(
     categorical features, then label noise) so a given config always produces
     the same bytes.
     """
-    column_strings: List = []
-    integer_values: Dict[str, np.ndarray] = {}
+    column_strings: list = []
+    integer_values: dict[str, np.ndarray] = {}
 
     for col in INTEGER_FEATURES:
         if col in ("I4", "I5", "I6", "I9", "I10"):
@@ -290,7 +289,7 @@ def _build_chunk(
         missing = rng.random(n) < rate if rate > 0 else np.zeros(n, dtype=bool)
         column_strings.append(np.where(missing, "", values.astype(str)))
 
-    categorical_values: Dict[str, np.ndarray] = {}
+    categorical_values: dict[str, np.ndarray] = {}
     for col in CATEGORICAL_FEATURES:
         cardinality = CATEGORICAL_CARDINALITIES[col]
         draws = rng.zipf(cfg.zipf_exponent, n)

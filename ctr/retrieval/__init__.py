@@ -1,1 +1,1 @@
-"""Candidate retrieval and ranking (TODO in a later step)."""
+"""Candidate retrieval: two-tower model and FAISS index."""

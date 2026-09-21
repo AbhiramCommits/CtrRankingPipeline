@@ -26,7 +26,8 @@ features: $(PYTHON)
 	$(PYTHON) scripts/run_features.py --config configs/features.yaml
 
 train: $(PYTHON)
-	$(PYTHON) scripts/run_train.py
+	$(PYTHON) scripts/train_retrieval.py --config configs/retrieval.yaml
+	$(PYTHON) scripts/train_ranker.py --config configs/ranker.yaml
 
 eval: $(PYTHON)
 	$(PYTHON) scripts/run_eval.py
