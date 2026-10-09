@@ -50,19 +50,19 @@ jobs:
       - run: pip install -q -e ".[dev]"
 
       - name: Ingest tiny synthetic dataset
-        run: make data ROWS=30000
+        run: make data ROWS=30000 PYTHON="$(command -v python)"
 
       - name: Build features
-        run: make features
+        run: make features PYTHON="$(command -v python)"
 
       - name: Train retrieval + ranker (1 epoch)
         env:
           CTR_RETRIEVAL_EPOCHS: "1"
           CTR_RANKER_EPOCHS: "1"
-        run: make train
+        run: make train PYTHON="$(command -v python)"
 
       - name: Evaluate
-        run: make eval
+        run: make eval PYTHON="$(command -v python)"
 
       - name: Start serving and hit /rank
         run: |

@@ -13,7 +13,7 @@ install:
 		uv sync --extra dev; \
 	else \
 		echo "uv not found, falling back to venv + pip"; \
-		( command -v python3.12 || command -v python3.11 || command -v python3.10 || command -v python3 ) -m venv .venv && \
+		"$$( command -v python3.12 || command -v python3.11 || command -v python3.10 || command -v python3 )" -m venv .venv && \
 		$(PYTHON) -m pip install --upgrade pip && \
 		$(PYTHON) -m pip install -e ".[dev]"; \
 	fi
